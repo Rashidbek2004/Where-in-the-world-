@@ -1,0 +1,25 @@
+.navbar{
+    background-color: white;
+}
+
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 35px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.navbar .container .logo h1 {
+  font-size: 40px;
+}
+
+.navbar .container .btns {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.navbar .container .btns .btn1 {
+  margin-top: 5px;
+}
+
