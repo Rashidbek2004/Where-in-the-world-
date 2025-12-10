@@ -1,6 +1,13 @@
-.headColor{
+.headColor {
   width: 100%;
-  height: 100vh;
-  background-color: whitesmoke;
+}
+.headColor.dark {
+  background-color: rgba(0, 0, 0, 0.582);
 }
 
+.cardBox .boxWrite h6 {
+  margin-bottom: 4px;
+}
+.cardBox .boxWrite h3 {
+  margin-bottom: 6px;
+}

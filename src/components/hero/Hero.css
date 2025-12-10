@@ -33,6 +33,10 @@
   font-size: 20px;
 }
 
+.headColor.dark 
+.container .cards .cardBox{
+  box-shadow: 4px 4px 50px white;
+}
 .container .cards {
   display: flex;
   align-items: center;
@@ -47,6 +51,7 @@
   background-color: white;
   box-shadow: 1px 1px 20px;
   margin-bottom: 20px;
+  display: block;
 }
 .container .cards .cardBox .images {
   width: 100%;

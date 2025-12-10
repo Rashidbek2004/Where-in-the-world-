@@ -3,7 +3,12 @@ import "./App.css";
 import Hero from "./components/hero/Hero";
 import Navbar from "./components/navbar/Navbar";
 import { IoIosSearch } from "react-icons/io";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import Home from "./components/pages/home/Home";
+import About from "./components/pages/about/About";
 const App = () => {
+  const [modal, setModal] = useState(false);
+
   const [darkMode, setdarkMode] = useState(false);
   const [posts, setPosts] = useState();
   const api =
@@ -18,44 +23,62 @@ const App = () => {
   useEffect(() => {
     getData(api);
   }, []);
-  return (
-    <div className="headColor active">
-      <Navbar />
-      <div className="container">
-        <div className="write">
-          <form action="">
-            <IoIosSearch className="icon" />
-            <input type="text" placeholder="Search for a country…" />
-          </form>
-          <div className="row">
-            <select name="" id="">
-              <option value="">Filter by Region</option>
-              <option value="">Afrika</option>
-              <option value=""> America</option>
-              <option value="">Asia</option>
-              <option value="">Europe</option>
-              <option value=""> Ocenaia</option>
-            </select>
-          </div>
-        </div>
-        <div className="cards">
-          {posts?.map((item) => {
-            console.log(item);
 
-            return (
-              <div className="cardBox">
-                <div className="images">
-                  <img src={item?.png} alt="" />
-                </div>
-                <div className="boxWrite">
-                  <h4>{item.capital}</h4>
-                  <h4>Population: {item?.population}</h4>
-                  <h5>Region: {item?.region}</h5>
-                  <h5>Capital: {item?.capital}</h5>
-                </div>
-              </div>
-            );
-          })}
+  return (
+    <div className={darkMode ? `headColor dark` : `headColor`}>
+     
+
+      <BrowserRouter>
+        <Navbar setdarkMode={setdarkMode} darkMode={darkMode} />
+
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/about" element={<About modal={modal}/>}/>
+        </Routes>
+      </BrowserRouter>
+
+      <div className="rows">
+        <div className="container">
+          <div className="write">
+            <form action="">
+              <IoIosSearch className="icon" />
+              <input type="text" placeholder="Search for a country…" />
+            </form>
+            <div className="row">
+              <select name="" id="">
+                <option value="">Filter by Region</option>
+                <option value="">Afrika</option>
+                <option value=""> America</option>
+                <option value="">Asia</option>
+                <option value="">Europe</option>
+                <option value=""> Ocenaia</option>
+              </select>
+            </div>
+          </div>
+          <div className="cards">
+            {posts?.map((item) => {
+              
+              return (
+                <BrowserRouter>
+                  <Link
+                    to="/about" element={<About setModal={setModal} modal={modal}/>}
+                    state={{ selected: item }} 
+                    className="cardBox"
+                  >
+                    <div className="images">
+                      <img src={item?.flags.svg} alt="" />
+                    </div>
+                    <div className="boxWrite">
+                      <h3>{item?.name.common}</h3>
+                      <h6>Population: {item?.population}</h6>
+                      <h6>Region: {item?.region}</h6>
+                      <h6>Capital: {item?.capital}</h6>
+                    </div>
+                  </Link>
+                </BrowserRouter>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
